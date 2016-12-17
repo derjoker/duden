@@ -1,0 +1,2 @@
+# duden
+Extension for duden.
