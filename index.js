@@ -1,1 +1,3 @@
-console.log('Hello Duden.')
+$(document).ready(() => {
+  console.log('Hello jQuery.')
+})
