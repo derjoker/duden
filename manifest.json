@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "duden",
+  "version": "0.1.0",
+  "description": "Extension for duden.",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://www.duden.de/*"
+      ],
+      "js": [
+        "./index.js"
+      ]
+    }
+  ]
+}

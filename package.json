@@ -4,6 +4,7 @@
   "description": "Extension for duden.",
   "main": "index.js",
   "scripts": {
+    "start": "web-ext run --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/derjoker/duden/issues"
   },
-  "homepage": "https://github.com/derjoker/duden#readme"
+  "homepage": "https://github.com/derjoker/duden#readme",
+  "devDependencies": {
+    "web-ext": "^1.8.1"
+  }
 }
