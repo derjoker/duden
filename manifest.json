@@ -1,16 +1,27 @@
 {
   "manifest_version": 2,
   "name": "duden",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Extension for duden.",
   "content_scripts": [
     {
       "matches": [
-        "http://www.duden.de/*"
+        "http://www.duden.de/woerterbuch/deutsch-englisch/*",
+        "http://www.duden.de/woerterbuch/englisch-deutsch/*"
       ],
       "js": [
         "./dist/jquery.min.js",
         "./index.js"
+      ]
+    },
+    {
+      "matches": [
+        "http://www.duden.de/*",
+        "https://www.instapaper.com/*"
+      ],
+      "js": [
+        "./dist/jquery.min.js",
+        "./dbclick.js"
       ]
     }
   ]
