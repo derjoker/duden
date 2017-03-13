@@ -2,22 +2,39 @@ $(document).ready(() => {
   const VERSION = 'v1_788d' // v{n}_xxxx
   const word = location.href.split('/').pop()
 
-  function set(front, back) {
+  const duden = (function() {
     function wrap(el) {
       return $('<div>').append($(el).addClass(word)).html()
     }
 
-    front = wrap(front)
-    back = wrap(back)
-
     const key = [VERSION, word].join(' ')
-    let value = localStorage.getItem(key)
-    value = value ? JSON.parse(value) : {}
 
-    value[front] = back
-
-    localStorage.setItem(key, JSON.stringify(value))
-  }
+    return {
+      get: function() {
+        const item = localStorage.getItem(key)
+        return item ? JSON.parse(item) : {}
+      },
+      set: function(front, back) {
+        front = wrap(front)
+        back = wrap(back)
+        let item = this.get()
+        item[front] = back
+        this.save(item)
+      },
+      unset: function(front) {
+        front = wrap(front)
+        let item = this.get()
+        delete item[front]
+        this.save(item)
+      },
+      save: function(item) {
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+      remove: function() {
+        localStorage.removeItem(key)
+      },
+    }
+  })()
 
   function get() {
     let array = []
@@ -55,8 +72,12 @@ $(document).ready(() => {
     button.click((event) => {
       const target = $(event.target)
       if (target.text() === 'Add') {
-        set(front, back)
+        duden.set(front, back)
         target.text('Remove')
+      }
+      else {
+        duden.unset(front)
+        target.text('Add')
       }
     })
     $(gp).append(button)
