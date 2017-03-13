@@ -1,4 +1,7 @@
 $(document).ready(() => {
+  // clear effects
+  $('button.duden').remove()
+
   const VERSION = 'v1_788d' // v{n}_xxxx
   const word = location.href.split('/').pop()
 
@@ -59,14 +62,13 @@ $(document).ready(() => {
 		window.open(encodedUri)
   }
 
-  $('button:contains("Save")').remove()
-
-  const save = $('<button>Save</button>').click(() => get())
+  const save = $('<button>', {
+    'class': 'duden',
+    'text': 'Save',
+  }).click(() => get())
   $('h1#page-title').after(save)
 
   $('li.example-gp').each((index, gp) => {
-    $('button', gp).remove()
-
     const children = $(gp).clone().children().toArray()
     const last = $('.example:last', gp).index()
     const front = $('<div>').append(children.slice(0,last+1))
@@ -74,7 +76,8 @@ $(document).ready(() => {
     // console.log(gp, front, back)
 
     const button = $('<button>', {
-      'text': duden.has(front) ? 'Remove' : 'Add'
+      'class': 'duden',
+      'text': duden.has(front) ? 'Remove' : 'Add',
     }).click((event) => {
       const target = $(event.target)
       if (target.text() === 'Add') {
