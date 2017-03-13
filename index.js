@@ -51,7 +51,14 @@ $(document).ready(() => {
     const back = $('<div>').append(children.slice(last+1))
     // console.log(gp, front, back)
 
-    const button = $('<button>Add</button>').click(() => set(front, back))
+    const button = $('<button>Add</button>')
+    button.click((event) => {
+      const target = $(event.target)
+      if (target.text() === 'Add') {
+        set(front, back)
+        target.text('Remove')
+      }
+    })
     $(gp).append(button)
   })
 })
