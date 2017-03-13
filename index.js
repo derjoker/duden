@@ -14,6 +14,11 @@ $(document).ready(() => {
         const item = localStorage.getItem(key)
         return item ? JSON.parse(item) : {}
       },
+      has: function(front) {
+        front = wrap(front)
+        const item = this.get()
+        return item.hasOwnProperty(front)
+      },
       set: function(front, back) {
         front = wrap(front)
         back = wrap(back)
@@ -68,8 +73,9 @@ $(document).ready(() => {
     const back = $('<div>').append(children.slice(last+1))
     // console.log(gp, front, back)
 
-    const button = $('<button>Add</button>')
-    button.click((event) => {
+    const button = $('<button>', {
+      'text': duden.has(front) ? 'Remove' : 'Add'
+    }).click((event) => {
       const target = $(event.target)
       if (target.text() === 'Add') {
         duden.set(front, back)

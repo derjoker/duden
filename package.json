@@ -1,6 +1,6 @@
 {
   "name": "duden",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Extension for duden.",
   "main": "index.js",
   "scripts": {
